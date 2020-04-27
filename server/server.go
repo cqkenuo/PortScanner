@@ -2,6 +2,7 @@ package server
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"math/rand"
 	"time"
@@ -29,8 +30,11 @@ type Logic struct {
 // 初始化
 func init() {
 	rand.Seed(time.Now().Unix())
+	var configFile string
+	flag.StringVar(&configFile, "c", util.GetSelfName()+".toml", "server config file")
+	flag.Parse()
 	logic = newLogic()
-	logic.Log, logic.Conf = configParse()
+	logic.Log, logic.Conf = configParse(configFile)
 	logic.newMongoDB()
 	logic.newRedis()
 	logic.newGoworker()

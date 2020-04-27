@@ -9,7 +9,6 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-const configFile = "config.toml"
 
 type (
 	config struct {
@@ -57,7 +56,7 @@ type (
 )
 
 // 解析 toml 相关配置
-func configParse() (*logrus.Entry, *config) {
+func configParse(configFile string) (*logrus.Entry, *config) {
 	conf := new(config)
 	_, err := toml.DecodeFile(configFile, conf)
 	if err != nil {

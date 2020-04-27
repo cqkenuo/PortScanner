@@ -54,7 +54,7 @@ func agentAuth() gin.HandlerFunc {
 }
 
 func httpAgentDownload(c *gin.Context) {
-	s := util.ReadFile("scanAgent")
+	s := util.ReadFile("agent")
 	fileName := []byte(s)
 	c.Status(http.StatusOK)
 	c.Header("Content-Length", strconv.Itoa(len(fileName)))

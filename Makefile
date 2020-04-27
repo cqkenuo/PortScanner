@@ -5,28 +5,20 @@ DATE=$(shell date +'%Y-%m-%d %H:%M:%S')
 
 mac:
 		@echo "  >  Building mac binary..."
-		$(MacOS) go build -o cmd/server_darwin scanServer.go
-		$(MacOS) go build -o cmd/agent_darwin scanAgent.go
+		$(MacOS) go build -o cmd/server server.go
+		$(MacOS) go build -o cmd/agent agent.go
 		@echo "MacOS 版本编译完成"
 		@echo $(DATE)
 
 linux:
 		@echo "  >  Building linux binary..."
-		$(LinuxOS) go build -o cmd/server_linux scanServer.go
-		$(LinuxOS) go build -o cmd/agent_linux scanAgent.go
+		$(LinuxOS) go build -o cmd/server server.go
+		$(LinuxOS) go build -o cmd/agent agent.go
 		@echo "Linux 版本编译完成"
 		@echo $(DATE)
 
-windows:
-		@echo "  >  Building windows binary..."
-		$(Windows) go build -o cmd/server.exe scanServer.go
-		$(Windows) go build -o cmd/agent.exe scanAgent.go
-		@echo "Windows 版本编译完成"
-
 all:
-		$(Windows) go build -o cmd/server.exe scanServer.go
-		$(Windows) go build -o cmd/agent.exe scanAgent.go
-		$(MacOS) go build -o cmd/server_darwin scanServer.go
-		$(MacOS) go build -o cmd/agent_darwin scanAgent.go
-		$(LinuxOS) go build -o cmd/server_linux scanServer.go
-		$(LinuxOS) go build -o cmd/agent_linux scanAgent.go
+		$(MacOS) go build -o cmd/server_darwin server.go
+		$(MacOS) go build -o cmd/agent_darwin agent.go
+		$(LinuxOS) go build -o cmd/server_linux server.go
+		$(LinuxOS) go build -o cmd/agent_linux agent.go
