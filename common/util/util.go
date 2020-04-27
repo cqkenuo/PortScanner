@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"net"
 	"os"
+	"os/exec"
+	"path"
 	"path/filepath"
 	"strings"
 	"time"
@@ -145,4 +147,12 @@ func GetLocalIp() (string, error) {
 		}
 	}
 	return "", errors.New("Are you connected to the network?")
+}
+
+func GetSelfName() string {
+	file, _ := exec.LookPath(os.Args[0])
+	absFile, _ := filepath.Abs(file)
+	_, fileName := path.Split(strings.Replace(absFile, "\\", "/", -1))
+	fileName = strings.TrimSuffix(fileName, path.Ext(fileName))
+	return fileName
 }

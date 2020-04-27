@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/darkMoon1973/PortScanner/common/util"
 	"github.com/gin-gonic/gin"
+	"github.com/moonD4rk/morph-scan/common/util"
 )
 
 type response struct {
@@ -54,7 +54,7 @@ func agentAuth() gin.HandlerFunc {
 }
 
 func httpAgentDownload(c *gin.Context) {
-	s := util.ReadFile("scanAgent")
+	s := util.ReadFile("agent")
 	fileName := []byte(s)
 	c.Status(http.StatusOK)
 	c.Header("Content-Length", strconv.Itoa(len(fileName)))

@@ -7,19 +7,22 @@
 ---
 
 ```bash
-go get github.com/darkMoon1973/PortScanner
-
-go build scanServer.go
-
-go build scanAgent.go
+# 下载仓库
+go get github.com/moonD4rk/morph-scan
+# 安装依赖
+go mod tidy
+# 编译二进制文件
+go build -o cmd/server scanServer.go
+go build -o cmd/agent scanAgent.go
+# 交叉编译其他版本的二进制文件
+make all
 ```
 
-##### 配置
-
-
+##### 配置文件
 
 ```toml
-app_name = "PortScanner"
+# cmd/config.toml
+app_name = "morph-scan"
 # Redis Server URI
 redis_url = "redis://root:password@redis-server:6379/0"
 # Redis 队列长度
@@ -71,7 +74,7 @@ worker_num = 500
 
 
 ```sh
-nohup scanServer 1>nohup.out 2>stderr.out &
+nohup server 1>nohup.out 2>stderr.out &
 ```
 
 ##### Agent 端启动
@@ -79,7 +82,7 @@ nohup scanServer 1>nohup.out 2>stderr.out &
 利用 curl 从 server 开启的 http 端口下载 agent 客户端，默认日志级别为 debug，worker 数量为10，日志文件名称为 `agent.log`
 
 ```shell
-nohup curl http://server-host:1973/api/download --user "PortScanner:PortScanner" -o scanAgent && chmod +x scanAgent && ./scanAgent -server server-host:1973 -token PortScanner  -loglevel info -logfile agent.log -worker 10 2> stderr.out 1> nohup.out &
+nohup curl http://server-host:1973/api/download --user "PortScanner:PortScanner" -o agent && chmod +x scanAgent && ./scanAgent -server server-host:1973 -token PortScanner  -loglevel info -logfile agent.log -worker 10 2> stderr.out 1> nohup.out &
 ```
 
 默认扫描调度只实现了读取扫描名单，过滤白名单的功能，需要更为复杂扫描逻辑的请自行修改代码添加。

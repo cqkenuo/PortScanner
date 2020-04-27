@@ -5,12 +5,10 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/darkMoon1973/PortScanner/common/lib/goworker"
-	"github.com/darkMoon1973/PortScanner/common/lib/logs"
+	"github.com/moonD4rk/morph-scan/common/lib/goworker"
 	"github.com/sirupsen/logrus"
 )
 
-const configFile = "config.toml"
 
 type (
 	config struct {
@@ -58,7 +56,7 @@ type (
 )
 
 // 解析 toml 相关配置
-func configParse() (*logrus.Entry, *config) {
+func configParse(configFile string) (*logrus.Entry, *config) {
 	conf := new(config)
 	_, err := toml.DecodeFile(configFile, conf)
 	if err != nil {
@@ -69,7 +67,7 @@ func configParse() (*logrus.Entry, *config) {
 	conf.workerSetting = workerSetting()
 	conf.workerSetting.URI = conf.RedisUrl
 	conf.workerSetting.Concurrency = conf.WorkerNum
-	log := logs.GetLogger(conf.Log.Level, conf.Log.File)
+	log := GetLogger(conf.Log.Level, conf.Log.File)
 	return log, conf
 }
 

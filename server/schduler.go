@@ -4,7 +4,7 @@ import (
 	"net"
 	"strings"
 
-	"github.com/darkMoon1973/PortScanner/common/util"
+	"github.com/moonD4rk/morph-scan/common/util"
 )
 
 type (

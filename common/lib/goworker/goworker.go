@@ -2,11 +2,12 @@ package goworker
 
 import (
 	"context"
-	"github.com/sirupsen/logrus"
 	"os"
 	"strconv"
 	"sync"
 	"time"
+
+	"github.com/sirupsen/logrus"
 
 	"github.com/go-redis/redis"
 )

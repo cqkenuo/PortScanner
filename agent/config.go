@@ -8,8 +8,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/darkMoon1973/PortScanner/common/lib/goworker"
-	"github.com/darkMoon1973/PortScanner/common/lib/logs"
+	"github.com/moonD4rk/morph-scan/common/lib/goworker"
 	"github.com/sirupsen/logrus"
 	"github.com/tidwall/gjson"
 )
@@ -45,7 +44,7 @@ func flagParse() (*logrus.Entry, *config) {
 	flag.StringVar(&logLevel, "loglevel", "debug", "log level")
 	flag.StringVar(&logFile, "logfile", "agent.log", "log file")
 	flag.Parse()
-	log := logs.GetLogger(logLevel, logFile)
+	log := GetLogger(logLevel, logFile)
 	return log, conf
 }
 
