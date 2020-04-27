@@ -7,19 +7,22 @@
 ---
 
 ```bash
+# 下载仓库
 go get github.com/moonD4rk/morph-scan
-
-go build scanServer.go
-
-go build scanAgent.go
+# 安装依赖
+go mod tidy
+# 编译二进制文件
+go build -o cmd/server scanServer.go
+go build -o cmd/agent scanAgent.go
+# 交叉编译其他版本的二进制文件
+make all
 ```
 
-##### 配置
-
-
+##### 配置文件
 
 ```toml
-app_name = "PortScanner"
+# cmd/config.toml
+app_name = "morph-scan"
 # Redis Server URI
 redis_url = "redis://root:password@redis-server:6379/0"
 # Redis 队列长度

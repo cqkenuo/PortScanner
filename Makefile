@@ -19,6 +19,14 @@ linux:
 
 windows:
 		@echo "  >  Building windows binary..."
-		$(Windows) go build -o bin/server.exe scanServer.go
-		$(Windows) go build -o bin/agent.exe scanAgent.go
+		$(Windows) go build -o cmd/server.exe scanServer.go
+		$(Windows) go build -o cmd/agent.exe scanAgent.go
 		@echo "Windows 版本编译完成"
+
+all:
+		$(Windows) go build -o cmd/server.exe scanServer.go
+		$(Windows) go build -o cmd/agent.exe scanAgent.go
+		$(MacOS) go build -o cmd/server_darwin scanServer.go
+		$(MacOS) go build -o cmd/agent_darwin scanAgent.go
+		$(LinuxOS) go build -o cmd/server_linux scanServer.go
+		$(LinuxOS) go build -o cmd/agent_linux scanAgent.go
