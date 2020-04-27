@@ -7,7 +7,7 @@
 ---
 
 ```bash
-go get github.com/darkMoon1973/PortScanner
+go get github.com/moonD4rk/morph-scan
 
 go build scanServer.go
 

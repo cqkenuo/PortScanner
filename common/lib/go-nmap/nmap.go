@@ -4,8 +4,9 @@ import (
 	"bytes"
 	"encoding/xml"
 	"fmt"
-	"github.com/pkg/errors"
 	"os/exec"
+
+	"github.com/pkg/errors"
 )
 
 type (

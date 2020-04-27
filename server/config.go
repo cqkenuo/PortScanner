@@ -5,8 +5,7 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/darkMoon1973/PortScanner/common/lib/goworker"
-	"github.com/darkMoon1973/PortScanner/common/lib/logs"
+	"github.com/moonD4rk/morph-scan/common/lib/goworker"
 	"github.com/sirupsen/logrus"
 )
 
@@ -69,7 +68,7 @@ func configParse() (*logrus.Entry, *config) {
 	conf.workerSetting = workerSetting()
 	conf.workerSetting.URI = conf.RedisUrl
 	conf.workerSetting.Concurrency = conf.WorkerNum
-	log := logs.GetLogger(conf.Log.Level, conf.Log.File)
+	log := GetLogger(conf.Log.Level, conf.Log.File)
 	return log, conf
 }
 
